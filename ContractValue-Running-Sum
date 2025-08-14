@@ -1,6 +1,6 @@
 /*
 This DAX formula generates a cumulative sum of ContractValue up to a given fiscal week, while preserving the filter context for those dimensions so that only relevant report slicers affect it. 
-See "WoW Pipeline vs Target.PNG" in this repository for the use case. 
+Image below shows one use case.
 */
 
 CALCULATE(
@@ -27,3 +27,5 @@ CALCULATE(
         )
 )
 
+
+![My Image](images/WoW Pipeline vs Target.png)
