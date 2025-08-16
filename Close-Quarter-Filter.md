@@ -1,7 +1,7 @@
-This DAX formula dynamically determines the current fiscal quarter using TODAY() and LOOKUPVALUE, then calculates a filter for the next four quarters with FILTER and SELECTCOLUMNS. Good for future-proofing a slicer. 
+This DAX formula dynamically determines the current fiscal quarter using TODAY() and LOOKUPVALUE, then calculates a filter for the previous three quarters. Good for future-proofing a slicer. 
 
 
-![My Image](images/)
+![My Image](images/FQ_Slicer.PNG)
 
 
 ```dax
