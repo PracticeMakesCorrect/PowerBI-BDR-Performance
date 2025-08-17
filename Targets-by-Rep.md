@@ -1,4 +1,4 @@
-This DAX formula calculates individual targets by dividing team targets by team sizes across multiple years and quarters. Includes error handling (IFERROR) and multiple nested lookups. Useful for target-setting and data normalization for sales teams.
+This DAX formula calculates individual targets by dividing team targets by team sizes across multiple years and quarters. This is useful when targets are set at team level and you need to automate individual target calculation.
 
 ![My Image](images/Attainment_by_Rep.PNG)
 
