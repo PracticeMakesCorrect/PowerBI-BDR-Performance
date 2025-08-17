@@ -6,9 +6,8 @@ This DAX formula dynamically determines the current fiscal quarter using TODAY()
 
 ```dax
 Last4ClosedQuarters =
-VAR CQ = TODAY()
-VAR LastClosedQuarterStart =
-    STARTOFQUARTER(EDATE(CQ, -3))   -- go back 1 closed quarter
+VAR TodayDate = TODAY()
+VAR LastClosedQuarterStart = STARTOFQUARTER(EDATE(TodayDate, -3))
 VAR CQ_Formatted =
     FORMAT(LastClosedQuarterStart, "YYYY") & "-Q" & QUARTER(LastClosedQuarterStart)
 VAR QTR_NUM =
