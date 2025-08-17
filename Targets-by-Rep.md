@@ -1,5 +1,6 @@
 This DAX formula calculates individual targets by dividing team targets by team sizes across multiple years and quarters. This is useful when targets are set at team level and you need to automate individual target calculation.
 
+
 ![My Image](images/Attainment_by_Rep.PNG)
 
 
