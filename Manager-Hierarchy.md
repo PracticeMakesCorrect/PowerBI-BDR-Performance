@@ -1,7 +1,7 @@
 This DAX formula finds the person who manages each rep depending on the fiscal quarter. This is useful for keeping track of reps changing teams so that when one filtes to a particular fiscal quarter and manager, the reps shown are always correct. 
 
 
-![My Image](images/)
+![My Image](images/Manager-Hierarchy.PNG)
 
 
 ```dax
