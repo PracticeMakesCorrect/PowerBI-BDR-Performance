@@ -6,21 +6,16 @@ This DAX formula finds the person who manages each rep depending on the fiscal q
 
 ```dax
 Team_Lead_Structure = 
-    SWITCH(
-        Sales_Performance_Overview[Fiscal_Period],
-        "2022-Q1", LOOKUPVALUE('Q1_2022_Org_Chart'[Team_Lead], 'Q1_2022_Org_Chart'[Rep_ID], Sales_Performance_Overview[Rep_Name]),
-        "2022-Q2", LOOKUPVALUE('Q2_2022_Org_Chart'[Team_Lead], 'Q2_2022_Org_Chart'[Rep_ID], Sales_Performance_Overview[Rep_Name]),
-        "2022-Q3", LOOKUPVALUE('Q3_2022_Org_Chart'[Team_Lead], 'Q3_2022_Org_Chart'[Rep_ID], Sales_Performance_Overview[Rep_Name]),
-        "2022-Q4", LOOKUPVALUE('Q4_2022_Org_Chart'[Team_Lead], 'Q4_2022_Org_Chart'[Rep_ID], Sales_Performance_Overview[Rep_Name]),
-
-        "2023-Q1", LOOKUPVALUE('Q1_2023_Org_Chart'[Team_Lead], 'Q1_2023_Org_Chart'[Rep_ID], Sales_Performance_Overview[Rep_Name]),
-        "2023-Q2", LOOKUPVALUE('Q2_2023_Org_Chart'[Team_Lead], 'Q2_2023_Org_Chart'[Rep_ID], Sales_Performance_Overview[Rep_Name]),
-        "2023-Q3", LOOKUPVALUE('Q3_2023_Org_Chart'[Team_Lead], 'Q3_2023_Org_Chart'[Rep_ID], Sales_Performance_Overview[Rep_Name]),
-        "2023-Q4", LOOKUPVALUE('Q4_2023_Org_Chart'[Team_Lead], 'Q4_2023_Org_Chart'[Rep_ID], Sales_Performance_Overview[Rep_Name]),
-        
-        "2024-Q1", LOOKUPVALUE('Q1_2024_Org_Chart'[Team_Lead], 'Q1_2024_Org_Chart'[Rep_ID], Sales_Performance_Overview[Rep_Name]),
-        "2024-Q2", LOOKUPVALUE('Q2_2024_Org_Chart'[Team_Lead], 'Q2_2024_Org_Chart'[Rep_ID], Sales_Performance_Overview[Rep_Name]),
-        "2024-Q3", LOOKUPVALUE('Q3_2024_Org_Chart'[Team_Lead], 'Q3_2024_Org_Chart'[Rep_ID], Sales_Performance_Overview[Rep_Name]),
-        "2024-Q4", LOOKUPVALUE('Q4_2024_Org_Chart'[Team_Lead], 'Q4_2024_Org_Chart'[Rep_ID], Sales_Performance_Overview[Rep_Name])
+VAR CurrentRep = Sales_Performance_Overview[Rep_Name]
+VAR CurrentFiscalPeriod = Sales_Performance_Overview[Fiscal_Period]
+VAR CurrentYear = LEFT(CurrentFiscalPeriod, 4)
+VAR CurrentQuarter = RIGHT(CurrentFiscalPeriod, 2)
+VAR TeamLead = 
+    CALCULATE(
+        SELECTEDVALUE(Org_Chart[Team_Lead]),
+        Org_Chart[Year] = CurrentYear,
+        Org_Chart[Quarter] = CurrentQuarter,
+        Org_Chart[Rep_ID] = CurrentRep
     )
-
+RETURN
+    TeamLead
