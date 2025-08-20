@@ -3,6 +3,7 @@ This DAX formula calculates individual targets by dividing team targets by team 
 
 ![My Image](images/Attainment_by_Rep.PNG)
 
+![My Image](images/AttainmentChart.PNG)
 
 ```dax
 MQO_Target_By_Rep = 
