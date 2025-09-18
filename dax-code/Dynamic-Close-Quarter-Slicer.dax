@@ -1,0 +1,22 @@
+Last4ClosedQuarters =
+VAR TodayDate = TODAY()
+VAR LastClosedQuarterStart = STARTOFQUARTER(EDATE(TodayDate, -3))
+VAR CQ_Formatted =
+    FORMAT(LastClosedQuarterStart, "YYYY") & "-Q" & QUARTER(LastClosedQuarterStart)
+VAR QTR_NUM =
+    LOOKUPVALUE(
+        FQ_FY_CLOSE_FILTER[FQ_Count],
+        FQ_FY_CLOSE_FILTER[FQ],
+        CQ_Formatted
+    )
+RETURN
+    DISTINCT (
+        SELECTCOLUMNS (
+            FILTER (
+                FQ_FY_CLOSE_FILTER,
+                FQ_FY_CLOSE_FILTER[FQ_Count] >= QTR_NUM - 3 &&
+                FQ_FY_CLOSE_FILTER[FQ_Count] <= QTR_NUM
+            ),
+            "FQ", FQ_FY_CLOSE_FILTER[FQ]
+        )
+    )
