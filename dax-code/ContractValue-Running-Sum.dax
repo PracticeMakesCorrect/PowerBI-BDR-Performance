@@ -1,0 +1,23 @@
+CALCULATE(
+    SUM(SalesPipeline[ContractValue]),
+    FILTER(
+        ALLEXCEPT(
+            SalesPipeline, 
+            'FiscalQuarter'[Quarter], 
+            'SalesRepList'[Rep], 
+            'SalesTeamList'[PrimaryTeam], 
+            'MarketSegmentList'[Market], 
+            'SalesManagerList'[Manager],
+            SalesPipeline[PipelineOwner],
+            SalesPipeline[Region],
+            Region[RegionName],
+            SalesPipeline[DealStageNumber],
+            SalesPipeline[ClosedLostNonPipelineFlag],
+            'ProductCategories'[PrimaryProductGroup],
+            SalesPipeline[ClosePeriodFilter],
+            'DealStatus'[ActiveOrStalled],
+            DealStages[StageName]
+        ),
+        SalesPipeline[Stage3FiscalWeek] <= MAX(FiscalWeek[FiscalWeekNumber])
+    )
+
