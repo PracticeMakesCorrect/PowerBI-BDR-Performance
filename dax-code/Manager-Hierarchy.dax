@@ -1,0 +1,14 @@
+Team_Lead_Structure = 
+VAR CurrentRep = Sales_Performance_Overview[Rep_Name]
+VAR CurrentFiscalPeriod = Sales_Performance_Overview[Fiscal_Period]
+VAR CurrentYear = LEFT(CurrentFiscalPeriod, 4)
+VAR CurrentQuarter = RIGHT(CurrentFiscalPeriod, 2)
+VAR TeamLead = 
+    CALCULATE(
+        SELECTEDVALUE(Org_Chart[Team_Lead]),
+        Org_Chart[Year] = CurrentYear,
+        Org_Chart[Quarter] = CurrentQuarter,
+        Org_Chart[Rep_ID] = CurrentRep
+    )
+RETURN
+    TeamLead
